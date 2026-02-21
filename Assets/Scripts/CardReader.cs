@@ -5,24 +5,16 @@ public class CardReader : MonoBehaviour
 {
     private string currentCardData;
     public Dictionary<string, CardPlayerData> cardDatabase = new Dictionary<string, CardPlayerData>();
-    public int hatListLength;
-    public CardPlayerData[] players = new CardPlayerData[4];
-    public int playersIndex = 0;
 
     public class CardPlayerData
     {
         public string name;
-        public float color1;
-        public float color2;
-        public float color3;
-        public int hatIndex;
-        public CardPlayerData(string _name, float _color1, float _color2, float _color3, int _hatIndex)
+        public string hexColor;
+
+        public CardPlayerData(string _name, string _hexColor)
         {
             name = _name;
-            _color1 = _color1;
-            _color2 = _color2;
-            _color3 = _color3;
-            _hatIndex = _hatIndex;
+            hexColor = _hexColor;
         }
     }
 
@@ -49,14 +41,12 @@ public class CardReader : MonoBehaviour
         {
             Debug.Log("CARD EXISTS IN DATABASE");
         }
-        else if(playersIndex<players.Length)
+        else
         {
             Debug.Log("CARD NOT FOUND IN DATABASE. ADDING");
-            CardPlayerData temp = new CardPlayerData("NAME HERE", Random.Range(0f,1f), Random.Range(0f,1f), Random.Range(0f,1f), Random.Range(0, hatListLength));
-            cardDatabase.Add(currentCardData, temp);
-            players[playersIndex] = temp;
-            playersIndex++;
-            Debug.Log(cardDatabase);
+
+            cardDatabase.Add(currentCardData, new CardPlayerData("NAME HERE", "#000000"));
+            Debug.Log(cardDatabase[currentCardData].name + cardDatabase[currentCardData].hexColor);
         }
 
         currentCardData = "";
