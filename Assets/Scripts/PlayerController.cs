@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
         foreach (GameObject player in players)
         {
-
             if (player == null) continue;
             if (player.transform == transform) continue;
 
