@@ -42,5 +42,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: hats layer
+    uniqueID: 630465533
+    locked: 0
+  - name: abilities
+    uniqueID: 3677685045
+    locked: 0
   m_RenderingLayers:
   - Default
