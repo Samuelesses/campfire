@@ -89,12 +89,5 @@ public class PlayerController : MonoBehaviour
             rigidBody.linearVelocity = Vector2.zero;
             rigidBody.AddForce(direction * knockback, ForceMode2D.Impulse);
         }
-
-        else if (collision.gameObject.CompareTag("Ability"))
-        {
-            Destroy(collision.gameObject);
-            abilityIcon.SetActive(true);
-            abilityOrb = GameObject.FindGameObjectsWithTag("Ability");
-        }
     }
 }
