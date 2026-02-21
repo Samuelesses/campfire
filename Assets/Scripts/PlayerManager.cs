@@ -6,10 +6,10 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerPrefab;
     public int playerCount = 4;
 
-    float minX = -7f;
-    float maxX = 7f;
-    float minY = -4f;
-    float maxY = 4f;
+    float minX = -8f;
+    float maxX = 8f;
+    float minY = -5f;
+    float maxY = 5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
