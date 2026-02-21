@@ -159,7 +159,7 @@ MonoBehaviour:
   hatIndex: 0
   rigidBody: {fileID: 3416700874454996705}
   speed: 1
-  knockback: 5
+  knockback: 8
   knockbackDuration: 0
   players: []
 --- !u!50 &3416700874454996705
