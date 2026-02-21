@@ -11,6 +11,8 @@ public class CardReader : MonoBehaviour
     public GameObject[] realPlayers;
     public int playersIndex = 0;
 
+    [SerializeField] Animator transAni;
+
     public class CardPlayerData
     {
         public string name;
@@ -58,7 +60,7 @@ public class CardReader : MonoBehaviour
         if (cardDatabase.ContainsKey(currentCardData) && currentScene.name == "Main Menu")
         {
             Debug.Log("CARD EXISTS IN DATABASE. LOADING GAME SCENE");
-            SceneManager.LoadScene("Game");
+            transAni.SetTrigger("go");
         }
         else if (playersIndex < players.Length && currentScene.name == "Main Menu")
         {
