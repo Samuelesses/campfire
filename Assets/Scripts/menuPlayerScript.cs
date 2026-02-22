@@ -21,7 +21,7 @@ public class menuPlayerScript : MonoBehaviour
 
     public void updatePlayer(string _name, float _color1, float _color2, float _color3, int _hatIndex)
     {
-        text.text = name;
+        text.text = _name;
         self.color = new Color(1, 1, 1, 1);
         shirt.color = new Color(_color1, _color2, _color3, 1);
         hats[_hatIndex].SetActive(true);

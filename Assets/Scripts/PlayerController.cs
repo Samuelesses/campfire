@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,12 +31,15 @@ public class PlayerController : MonoBehaviour
     public int myAttackMin = 1;
     public int myAttackMax = 5;
 
+    public TextMeshPro nameText;
+
     void Start()
     {
         if (!testing)
         {
             cr = GameObject.Find("CardReader").GetComponent<CardReader>();
             cameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+            nameText.text = cr.cardDatabase[index].name;
             hatIndex2 = cr.cardDatabase[index].hatIndex;
             hats[hatIndex2].SetActive(true);
             shirtSr.color = new Color(cr.cardDatabase[index].color1, cr.cardDatabase[index].color2, cr.cardDatabase[index].color3, 1);
@@ -110,7 +114,7 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(direction * knockback, ForceMode2D.Impulse);
             srAni.SetTrigger("hit");
             Instantiate(hitParticle, transform.position, transform.rotation);
-            cameraScript.shake(0.1f, 0.04f);
+            //cameraScript.shake(0.1f, 0.04f);
         }
     }
 }

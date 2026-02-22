@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.IO;
 
 public class CardReader : MonoBehaviour
 {
@@ -11,8 +12,12 @@ public class CardReader : MonoBehaviour
     public GameObject[] realPlayers;
     public int playersIndex = 0;
 
+    private string[] randomNames;
+
     [SerializeField] Animator transAni;
     [SerializeField] PlayerManager pm;
+
+
 
     public class CardPlayerData
     {
@@ -32,6 +37,15 @@ public class CardReader : MonoBehaviour
             color3 = _color3;
             hatIndex = _hatIndex;
         }
+    }
+    public class NameList
+    {
+        public string[] names;
+    }
+
+    void Awake() 
+    {
+        GenerateNames();
     }
 
     void Start()
@@ -74,6 +88,17 @@ public class CardReader : MonoBehaviour
         }
     }
 
+    void GenerateNames()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, "Names.json");
+        if (File.Exists(path))
+        {
+            string jsonText = File.ReadAllText(path);
+            NameList nameList = JsonUtility.FromJson<NameList>(jsonText);
+            randomNames = nameList.names;
+        }  
+    }
+
     private void HandleCard()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -90,7 +115,8 @@ public class CardReader : MonoBehaviour
                 }
             }
             int tempIndex = cardDatabase.Count;
-            cardDatabase.Add(tempIndex, new CardPlayerData("NAME HERE", currentCardData, Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0, hatListLength)));
+            string pickedName = randomNames[Random.Range(0, randomNames.Length)];
+            cardDatabase.Add(tempIndex, new CardPlayerData(pickedName, currentCardData, Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0, hatListLength)));
             realPlayers[tempIndex].GetComponent<menuPlayerScript>().updatePlayer(cardDatabase[tempIndex].name,cardDatabase[tempIndex].color1,cardDatabase[tempIndex].color2,cardDatabase[tempIndex].color3,cardDatabase[tempIndex].hatIndex);
             currentCardData = "";
         }
@@ -108,4 +134,5 @@ public class CardReader : MonoBehaviour
             currentCardData = "";
         }
     }
+    
 }
