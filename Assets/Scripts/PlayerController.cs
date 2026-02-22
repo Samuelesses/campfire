@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using Unity.VisualScripting;
+using System.IO;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [Header ("---- Cosmetic Variables ----")]
     public GameObject[] hats;
     public int hatIndex2;
+    public string audioFilePath = "Assets/Audio/";
+    public AudioSource audioSource;
     [SerializeField] Animator srAni;
     [SerializeField] GameObject hitParticle;
     [SerializeField] CameraScript cameraScript;
@@ -55,6 +57,14 @@ public class PlayerController : MonoBehaviour
         }
         players = GameObject.FindGameObjectsWithTag("Player");
         abilityOrb = GameObject.FindGameObjectsWithTag("Ability");
+        
+        // Ensure AudioSource is available and enabled
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.enabled = true;
     }
 
     void Update()
@@ -110,6 +120,7 @@ public class PlayerController : MonoBehaviour
         {
             health enemyHealth = collision.gameObject.GetComponent<health>();
             enemyHealth.takeDamage(myAttackMin,myAttackMax);
+            PlaySound("Attack");
             knockbackDuration = 0.5f;
             //Debug.Log("hit");
             hit = true;
@@ -120,6 +131,41 @@ public class PlayerController : MonoBehaviour
             Instantiate(hitParticle, transform.position, transform.rotation);
             //cameraScript.shake(0.1f, 0.04f);
         }
+    }
+
+    public void PlaySound(string voiceType)
+    {
+        // Check if audio source is available and enabled
+        if (audioSource == null || !audioSource.enabled || !audioSource.gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning($"AudioSource is disabled or null on {gameObject.name}");
+            return;
+        }
+        
+        string characterName = "";
+        
+        if (!testing && cr != null)
+        {
+            characterName = cr.cardDatabase[index].name;
+        }
+        else
+        {
+            Debug.LogWarning("Cannot play sound: testing mode or no card reader found");
+            return;
+        }
+        
+        // Build path for Resources folder: Audio/CharacterName/VoiceType
+        string resourcesPath = "Audio/" + characterName + "/" + voiceType;
+        AudioClip[] clips = Resources.LoadAll<AudioClip>(resourcesPath);
+        
+        if (clips.Length == 0)
+        {
+            Debug.LogWarning($"No audio clips found at Resources path: {resourcesPath}. Make sure audio files are moved from Assets/Audio/ to Assets/Resources/Audio/");
+            return;
+        }
+        
+        AudioClip randomClip = clips[Random.Range(0, clips.Length)];
+        audioSource.PlayOneShot(randomClip);
     }
 }
 
