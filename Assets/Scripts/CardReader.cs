@@ -12,6 +12,7 @@ public class CardReader : MonoBehaviour
     public int playersIndex = 0;
 
     [SerializeField] Animator transAni;
+    [SerializeField] PlayerManager pm;
 
     public class CardPlayerData
     {
@@ -77,7 +78,15 @@ public class CardReader : MonoBehaviour
         }
         else
         {
-            
+            pm = GameObject.Find("Players");
+            KeyValuePair<int, CardPlayerData> tempPlayer;
+            for (int x=0; x<cardDatabase.Count; x++)
+            {
+                if (player.Value.cardId == currentCardData)
+                {
+                    pm.abilityPlayer(tempPlayer);
+                }
+            }
         }
     }
 }
