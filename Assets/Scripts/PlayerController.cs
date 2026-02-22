@@ -5,10 +5,12 @@ public class PlayerController : MonoBehaviour
     public int index;
     [Header ("---- Cosmetic Variables ----")]
     public GameObject[] hats;
-    public int hatIndex;
+    public int hatIndex2;
     [SerializeField] Animator srAni;
     [SerializeField] GameObject hitParticle;
     [SerializeField] CameraScript cameraScript;
+    [SerializeField] SpriteRenderer sr;
+    [SerializeField] SpriteRenderer shirtSr;
 
     [Header ("---- Combat Variables ----")]
     public Rigidbody2D rigidBody;
@@ -21,17 +23,15 @@ public class PlayerController : MonoBehaviour
     public GameObject[] players;
     public GameObject[] abilityOrb;
     public GameObject abilityIcon;
-    public int myAttackMin = 1;
-    public int myAttackMax = 5;
-    [Header ("---- Combat Variables ----")]
     public CardReader cr;
 
     void Start()
     {
+        cr = GameObject.Find("CardReader").GetComponent<CardReader>();
         cameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
-        //hatIndex = Random.Range(0, hats.Length);
-        //hatIndex = cr.cardDatabase.;
-        hats[hatIndex].SetActive(true);
+        hatIndex2 = cr.cardDatabase[index].hatIndex;
+        hats[hatIndex2].SetActive(true);
+        shirtSr.color = new Color(cr.cardDatabase[index].color1, cr.cardDatabase[index].color2, cr.cardDatabase[index].color3, 1);
         players = GameObject.FindGameObjectsWithTag("Player");
         abilityOrb = GameObject.FindGameObjectsWithTag("Ability");
     }
@@ -87,16 +87,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             health enemyHealth = collision.gameObject.GetComponent<health>();
-            enemyHealth.takeDamage(myAttackMin, myAttackMax);
+            enemyHealth.takeDamage();
             knockbackDuration = 0.5f;
-            //Debug.Log("hit");
+            Debug.Log("hit");
             hit = true;
             Vector2 direction = (transform.position - collision.transform.position).normalized;
             rigidBody.linearVelocity = Vector2.zero;
             rigidBody.AddForce(direction * knockback, ForceMode2D.Impulse);
             srAni.SetTrigger("hit");
             Instantiate(hitParticle, transform.position, transform.rotation);
-            //cameraScript.shake(0.1f, 0.04f);
+            cameraScript.shake(0.1f, 0.04f);
         }
     }
 }

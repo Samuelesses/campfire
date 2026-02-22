@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 110402737}
   - component: {fileID: 110402738}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CardReader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4543,7 +4543,7 @@ GameObject:
   - component: {fileID: 1604869968}
   - component: {fileID: 1604869967}
   m_Layer: 0
-  m_Name: springs Magnetic Pluggnb NCS Copyright Free Music
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4564,7 +4564,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.409
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
