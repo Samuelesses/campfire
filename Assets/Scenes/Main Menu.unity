@@ -724,6 +724,7 @@ MonoBehaviour:
   - {fileID: 197181781}
   playersIndex: 0
   transAni: {fileID: 522716699}
+  pm: {fileID: 0}
 --- !u!1 &130773916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,6 +2762,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4643288409463539648, guid: a6631154a565c4080a17e75f8f9e05c1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4643288409463539648, guid: a6631154a565c4080a17e75f8f9e05c1, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -4562,7 +4567,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6342f8c2f1b194c5981954ed3aa1dd2c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.409
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

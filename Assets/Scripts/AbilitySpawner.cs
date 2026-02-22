@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class AbilitySpawner : MonoBehaviour
 {
@@ -12,11 +13,37 @@ public class AbilitySpawner : MonoBehaviour
     public float minY;
     public float maxY;
 
+    public Canvas winScreen;
+    public TextMeshProUGUI winnerText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InvokeRepeating("SpawnOrb", 2f, spawnRate);
+    }
+
+    void Update()
+    {
+        GameObject[] remainingPlayers = GameObject.FindGameObjectsWithTag("Player");
+        {
+            if (remainingPlayers.Length <= 1)
+            {
+                
+                winScreen.gameObject.SetActive(true);
+                if (remainingPlayers.Length == 1)
+                {
+                    winnerText.text = remainingPlayers[0].GetComponent<PlayerController>().nameText.text + " Wins!";
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    winnerText.text = "Tie!";
+                    Time.timeScale = 0f;
+                }
+                
+            }
+        }
     }
 
     // Update is called once per frame

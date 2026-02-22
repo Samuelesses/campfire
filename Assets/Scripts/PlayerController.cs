@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public int myAttackMax = 5;
 
     public TextMeshPro nameText;
+
 
     void Start()
     {
@@ -82,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 targetedPlayer = orb.transform;
             }
         }
+
     }
 
     void FixedUpdate()
@@ -118,3 +122,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+

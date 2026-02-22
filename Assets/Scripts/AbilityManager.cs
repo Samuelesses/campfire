@@ -25,7 +25,7 @@ public class AbilityManager : MonoBehaviour
         {
             Debug.Log("Using: " + currentAbility);
             
-            //UseAbility();
+            UseAbility();
         }
     }
 
