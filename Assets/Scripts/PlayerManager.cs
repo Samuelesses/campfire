@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     public Transform[] spawnPoints;
     public List<int> openSpawnPoints = new List<int> {0, 1, 2, 3, 4, 5};
+    public GameObject[] players;
 
     void Start()
     {  
@@ -20,8 +21,8 @@ public class PlayerManager : MonoBehaviour
         {
             int spawnPoint = openSpawnPoints[Random.Range(0, openSpawnPoints.Count)];
 
-            Instantiate(playerPrefab, spawnPoints[spawnPoint].position, Quaternion.identity, transform).GetComponent<PlayerController>().index = i;
-
+            players[i] = Instantiate(playerPrefab, spawnPoints[spawnPoint].position, Quaternion.identity, transform);
+            players[i].GetComponent<PlayerController>().index = i;
             openSpawnPoints.Remove(spawnPoint);
         }
     }
