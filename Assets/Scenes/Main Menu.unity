@@ -2764,6 +2764,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5477280487908817443, guid: a6631154a565c4080a17e75f8f9e05c1, type: 3}
+      propertyPath: m_text
+      value: Any Player Swipe Twice To Start
+      objectReference: {fileID: 0}
     - target: {fileID: 6422617355891663886, guid: a6631154a565c4080a17e75f8f9e05c1, type: 3}
       propertyPath: m_Name
       value: Play UI
