@@ -37,7 +37,7 @@ public class AbilitySpawner : MonoBehaviour
                 winScreen.gameObject.SetActive(true);
                 if (remainingPlayers.Length == 1)
                 {
-                    winnerText.text = remainingPlayers[0].GetComponent<PlayerController>().nameText.text + " Wins!";
+                    winnerText.text = remainingPlayers[0].GetComponent<PlayerController>().nameText.text + " Wins! \n Swipe to Restart";
                     AudioManager.Instance.Play("Victory", remainingPlayers[0].GetComponent<PlayerController>().nameText.text);
                     Time.timeScale = 0f;
                 }
