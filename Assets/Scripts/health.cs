@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class health : MonoBehaviour
 {
@@ -7,6 +8,15 @@ public class health : MonoBehaviour
 
     public bool isShielded = false;
     [SerializeField] GameObject damDisplay;
+    private Slider hpSlider;
+
+
+    void Start()
+    {
+        hpSlider = GetComponentInChildren<Slider>();
+        hpSlider.maxValue = totalHp;
+        hpSlider.value = totalHp;
+    }
 
     public void takeDamage(int incomingMin, int incomingMax)
     {
@@ -17,6 +27,8 @@ public class health : MonoBehaviour
 
         int damage = Random.Range(incomingMin, incomingMax);
         totalHp -= damage;
+
+        hpSlider.value = totalHp;
 
         if (totalHp <= 0)
         {
