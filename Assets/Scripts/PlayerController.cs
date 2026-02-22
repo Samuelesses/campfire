@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool testing;
     public int index;
     [Header ("---- Cosmetic Variables ----")]
     public GameObject[] hats;
@@ -29,11 +30,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        cr = GameObject.Find("CardReader").GetComponent<CardReader>();
-        cameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
-        hatIndex2 = cr.cardDatabase[index].hatIndex;
-        hats[hatIndex2].SetActive(true);
-        shirtSr.color = new Color(cr.cardDatabase[index].color1, cr.cardDatabase[index].color2, cr.cardDatabase[index].color3, 1);
+        if (!testing)
+        {
+            cr = GameObject.Find("CardReader").GetComponent<CardReader>();
+            cameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+            hatIndex2 = cr.cardDatabase[index].hatIndex;
+            hats[hatIndex2].SetActive(true);
+            shirtSr.color = new Color(cr.cardDatabase[index].color1, cr.cardDatabase[index].color2, cr.cardDatabase[index].color3, 1);
+        }
+        else
+        {
+            cameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+            hatIndex2 = 0;
+            shirtSr.color = new Color(0.5f, 1, 0.7f, 1);
+        }
         players = GameObject.FindGameObjectsWithTag("Player");
         abilityOrb = GameObject.FindGameObjectsWithTag("Ability");
     }
