@@ -46,13 +46,32 @@ public class CardReader : MonoBehaviour
             if (c == '\n' || c == '\r')
             {
                 HandleCard();
+                
             }
             else
             {
                 currentCardData += c;
             }
         }
-        Debug.Log(SceneManager.GetActiveScene());
+        
+    }
+
+        void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "Main Menu")
+        {
+            pm = GameObject.Find("Players").GetComponent<PlayerManager>();
+        }
     }
 
     private void HandleCard()
@@ -61,7 +80,6 @@ public class CardReader : MonoBehaviour
 
         if (currentScene.name == "Main Menu")
         {
-            Debug.Log("if");
             foreach (KeyValuePair<int, CardPlayerData> player in cardDatabase)
             {
                 Debug.Log(player.Value.cardId + currentCardData);
@@ -78,16 +96,16 @@ public class CardReader : MonoBehaviour
         }
         else
         {
-            Debug.Log("a");
             pm = GameObject.Find("Players").GetComponent<PlayerManager>();
             for (int x=0; x<cardDatabase.Count; x++)
             {
                 if (cardDatabase[x].cardId == currentCardData)
                 {
-                    Debug.Log("a");
+                    Debug.Log("realreal");
                     pm.abilityPlayer(x);
                 }
             }
+            currentCardData = "";
         }
     }
 }

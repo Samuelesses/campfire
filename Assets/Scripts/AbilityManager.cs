@@ -32,10 +32,10 @@ public class AbilityManager : MonoBehaviour
     public void GiveRandomAbility()
     {
         if (currentAbility != Ability.None) return;
-        int temp = Random.Range(4, 5);
+        int temp = Random.Range(1, 5);
         currentAbility = (Ability)temp;
         sr.sprite = sprites[temp];
-        player.GetComponent<PlayerController>().hasAbility = false;
+        player.GetComponent<PlayerController>().hasAbility = true;
         Debug.Log(temp);
         Debug.Log(currentAbility);
     }

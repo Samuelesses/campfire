@@ -28,9 +28,11 @@ public class PlayerManager : MonoBehaviour
     }
     public void abilityPlayer(int playerIndex)
     {
+        Debug.Log("pls");
         if (players[playerIndex].GetComponent<PlayerController>().hasAbility)
         {
             players[playerIndex].GetComponent<PlayerController>().hasAbility = false;
+            Debug.Log("worked");
             players[playerIndex].GetComponent<AbilityManager>().UseAbility();
         }
     }
