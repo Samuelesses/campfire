@@ -268,7 +268,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 938243975
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
@@ -355,6 +355,7 @@ MonoBehaviour:
   hatIndex: 0
   srAni: {fileID: 4291016615738177505}
   hitParticle: {fileID: 3829918418886504182}
+  cameraScript: {fileID: 0}
   rigidBody: {fileID: 3416700874454996705}
   speed: 1.8
   knockback: 20
@@ -836,10 +837,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.5206, y: 9.5206, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4845708382805271946}
+  m_Father: {fileID: 4959351957219638984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2345424297424443003
 SpriteRenderer:
@@ -932,7 +933,6 @@ Transform:
   - {fileID: 8509777821902314723}
   - {fileID: 3855103480278487279}
   - {fileID: 7048899536975019621}
-  - {fileID: 4665193999814021221}
   - {fileID: 2348858860528122558}
   - {fileID: 2456893107708033906}
   - {fileID: 3549096982726319930}
@@ -6123,7 +6123,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.5206, y: 9.5206, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4665193999814021221}
   m_Father: {fileID: 4845708382805271946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1162745564696900071
